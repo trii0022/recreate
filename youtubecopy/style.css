@@ -1,0 +1,212 @@
+:root {
+  --font-color: black;
+  --font-accent: white;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  font-size: 10px;
+  line-height: 2rem;
+  letter-spacing: 2.8px;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 100;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+#wrapper {
+  margin: 1rem;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+
+header {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: space-between;
+}
+
+header svg {
+  width: 40px;
+  cursor: pointer;
+}
+
+header h1 {
+  background-image: url(biketemplate.png);
+  background-repeat: no-repeat;
+  width: 188px;
+  height: 36px;
+  text-indent: -9999px;
+}
+
+.discography main {
+  grid-column: 1/-1;
+}
+
+.discography h2:after {
+  display: inline-block;
+  content: "+";
+  margin-left: 1rem;
+  color: var(--font-accent);
+  font-weight: 100;
+  transition: all 0.2s;
+}
+
+.discography h2.open:after,
+.discography h2:hover:after {
+  transform: rotate(45deg);
+}
+
+.discography main > section {
+  display: grid;
+  gap: 1.3rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.collapsible {
+  height: 0px;
+  overflow: hidden;
+}
+
+.collapsible.open {
+  height: auto;
+}
+
+/* .discography h2 {
+  grid-column: 1/-1;
+} */
+
+.album {
+  display: grid;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid var(--font-accent);
+}
+
+.album:hover > section {
+  transform: translateX(0%);
+}
+
+.album > * {
+  position: relative;
+  width: 100%;
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+}
+
+.album section {
+  z-index: 10;
+  background: white;
+  display: grid;
+  place-content: center;
+  transform: translateX(100%);
+  transition: all 0.3s;
+}
+
+.album h3 {
+  text-transform: uppercase;
+}
+
+@media only screen and (min-width: 1000px) {
+  header {
+    grid-column: 1/-1;
+  }
+
+  .discography main {
+    grid-column: 2/-1;
+  }
+
+  svg {
+    display: none;
+  }
+}
+
+/* Navigation */
+
+nav a {
+  font-size: 1.4rem;
+  display: block;
+  text-decoration: none;
+  color: var(--font-color);
+  margin-top: 1.4rem;
+  margin-bottom: 1.8rem;
+  transition: color 0.2s 0.1s;
+}
+
+nav a:hover {
+  color: var(--font-accent);
+}
+
+nav .active {
+  font-weight: bold;
+}
+
+nav {
+  position: absolute;
+  right: -100vw;
+  top: 100px;
+  z-index: 10;
+  background: white;
+  width: 100vw;
+  height: calc(100vh - 100px);
+  padding: 4rem;
+  transition: transform 1s;
+}
+
+nav.open {
+  transform: translateX(-100vw);
+}
+
+/* Burger Menu */
+
+svg rect {
+  transition: all 0.2s;
+  transform-origin: 50% 50%;
+}
+
+.open rect:nth-child(2),
+.open rect:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+rect:nth-child(2),
+rect:nth-child(3) {
+  transition-delay: 0s;
+}
+
+.open rect:first-child {
+  transform: translateY(30px);
+  opacity: 0;
+}
+
+.open rect:nth-child(2) {
+  transform: rotate(45deg);
+}
+
+.open rect:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+.open rect:last-child {
+  transform: translateY(-30px);
+  opacity: 0;
+}
